@@ -25,4 +25,14 @@ public class OrganizationService {
 		return organizationRepository.findByNameContains(name);
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Organization> findByParentNode(Organization organization) {
+		return organizationRepository.findByParentNode(organization.getId());
+	}
+	
+	@Transactional(readOnly = true)
+	public void deleteById(int id) {
+		organizationRepository.deleteById(id);
+	}
+	
 }

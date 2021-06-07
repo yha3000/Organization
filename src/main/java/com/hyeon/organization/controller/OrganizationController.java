@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hyeon.organization.dto.OrganizationDTO;
 import com.hyeon.organization.filter.SearchFilter;
-import com.hyeon.organization.model.Organization;
 import com.hyeon.organization.service.OrganizationService;
 
 @RestController
@@ -56,6 +55,7 @@ public class OrganizationController {
 			session.enableFilter("code").setParameter("CODE", "");
 			organization = organizationService.findByNameContains(filter.getSearchKeyword()).stream().map(OrganizationDTO::new).collect(Collectors.toList());
 		}
+		
 		return organization;
 	}
 	
@@ -64,11 +64,12 @@ public class OrganizationController {
 //	}
 
 //	@PutMapping
-//	public void updateOrganization(@PathVariable("id") int id, @RequestBody Organization organization) throws Exception {
+//	public void updateOrganization(@RequestBody Organization organization) throws Exception {
 //	}
 
-//	@DeleteMapping
+//	@DeleteMapping("/{id}")
 //	public void deleteOrganization(@PathVariable("id") int id) throws Exception {
+//		organizationService.deleteById(id);
 //	}
 	
 }

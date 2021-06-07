@@ -3,6 +3,7 @@ package com.hyeon.organization.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -53,7 +54,7 @@ public class Organization {
 	private Organization parent;
 	
 	@Filter(name = "code", condition = "code is not null")
-	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY) 
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL) 
 	@JsonManagedReference
 	private List<Organization> children = new ArrayList<Organization>(); 
 	
